@@ -1,4 +1,4 @@
-function HangmanGame.new 0
+function HangmanDisplay.new 0
 push constant 11
 call Memory.alloc 1
 pop pointer 0
@@ -21,9 +21,63 @@ push constant 0
 pop this 7
 push pointer 0
 return
-function HangmanGame.choosedifficultyLevel 3
+function HangmanDisplay.choosedifficultyLevel 3
 push argument 0
 pop pointer 0
+push pointer 0
+call HangmanDisplay.Difficulty 1
+pop temp 0
+call Keyboard.readChar 0
+pop local 0
+push pointer 0
+call HangmanDisplay.Category 1
+pop temp 0
+call Keyboard.readChar 0
+pop local 1
+push local 0
+push constant 69
+eq
+push local 0
+push constant 77
+eq
+or
+push local 0
+push constant 72
+eq
+or
+push local 1
+push constant 49
+eq
+push local 1
+push constant 50
+eq
+or
+push local 1
+push constant 51
+eq
+or
+and
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+push local 0
+push local 1
+call HangmanDisplay.checkAndAssign 3
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push pointer 0
+call HangmanDisplay.choosedifficultyLevel 1
+pop temp 0
+label IF_END0
+push constant 0
+return
+function HangmanDisplay.Difficulty 0
+push argument 0
+pop pointer 0
+call Screen.clearScreen 0
+pop temp 0
 push constant 9
 push constant 22
 call Output.moveCursor 2
@@ -206,8 +260,11 @@ call Output.printString 1
 pop temp 0
 call Output.println 0
 pop temp 0
-call Keyboard.readChar 0
-pop local 0
+push constant 0
+return
+function HangmanDisplay.Category 0
+push argument 0
+pop pointer 0
 call Screen.clearScreen 0
 pop temp 0
 push constant 9
@@ -422,9 +479,12 @@ call Output.printString 1
 pop temp 0
 call Output.println 0
 pop temp 0
-call Keyboard.readChar 0
-pop local 1
-push local 0
+push constant 0
+return
+function HangmanDisplay.checkAndAssign 0
+push argument 0
+pop pointer 0
+push argument 1
 push constant 69
 eq
 if-goto IF_TRUE0
@@ -432,7 +492,7 @@ goto IF_FALSE0
 label IF_TRUE0
 push constant 1
 pop this 10
-push local 1
+push argument 2
 push constant 49
 eq
 if-goto IF_TRUE1
@@ -445,7 +505,7 @@ push this 9
 call Questions.easyGeo 1
 pop this 0
 label IF_FALSE1
-push local 1
+push argument 2
 push constant 50
 eq
 if-goto IF_TRUE2
@@ -458,7 +518,7 @@ push this 9
 call Questions.easyGK 1
 pop this 0
 label IF_FALSE2
-push local 1
+push argument 2
 push constant 51
 eq
 if-goto IF_TRUE3
@@ -472,7 +532,7 @@ call Questions.easyTech 1
 pop this 0
 label IF_FALSE3
 label IF_FALSE0
-push local 0
+push argument 1
 push constant 77
 eq
 if-goto IF_TRUE4
@@ -480,7 +540,7 @@ goto IF_FALSE4
 label IF_TRUE4
 push constant 2
 pop this 10
-push local 1
+push argument 2
 push constant 49
 eq
 if-goto IF_TRUE5
@@ -493,7 +553,7 @@ push this 9
 call Questions.mediumGeo 1
 pop this 0
 label IF_FALSE5
-push local 1
+push argument 2
 push constant 50
 eq
 if-goto IF_TRUE6
@@ -506,7 +566,7 @@ push this 9
 call Questions.mediumGK 1
 pop this 0
 label IF_FALSE6
-push local 1
+push argument 2
 push constant 51
 eq
 if-goto IF_TRUE7
@@ -520,7 +580,7 @@ call Questions.mediumTech 1
 pop this 0
 label IF_FALSE7
 label IF_FALSE4
-push local 0
+push argument 1
 push constant 72
 eq
 if-goto IF_TRUE8
@@ -528,7 +588,7 @@ goto IF_FALSE8
 label IF_TRUE8
 push constant 3
 pop this 10
-push local 1
+push argument 2
 push constant 49
 eq
 if-goto IF_TRUE9
@@ -541,7 +601,7 @@ push this 9
 call Questions.hardGeo 1
 pop this 0
 label IF_FALSE9
-push local 1
+push argument 2
 push constant 50
 eq
 if-goto IF_TRUE10
@@ -554,7 +614,7 @@ push this 9
 call Questions.hardGK 1
 pop this 0
 label IF_FALSE10
-push local 1
+push argument 2
 push constant 51
 eq
 if-goto IF_TRUE11
@@ -570,7 +630,7 @@ label IF_FALSE11
 label IF_FALSE8
 push constant 0
 return
-function HangmanGame.run 1
+function HangmanDisplay.run 1
 push argument 0
 pop pointer 0
 call Screen.clearScreen 0
@@ -806,7 +866,7 @@ if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
 push pointer 0
-call HangmanGame.SinglePlayer 1
+call HangmanDisplay.singlePlayer 1
 pop temp 0
 goto IF_END0
 label IF_FALSE0
@@ -817,7 +877,7 @@ if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
 push pointer 0
-call HangmanGame.DoublePlayer 1
+call HangmanDisplay.doublePlayer 1
 pop temp 0
 goto IF_END1
 label IF_FALSE1
@@ -827,7 +887,7 @@ label IF_END1
 label IF_END0
 push constant 0
 return
-function HangmanGame.SinglePlayer 4
+function HangmanDisplay.singlePlayer 4
 push argument 0
 pop pointer 0
 push constant 0
@@ -840,7 +900,7 @@ if-goto WHILE_END0
 call Screen.clearScreen 0
 pop temp 0
 push pointer 0
-call HangmanGame.choosedifficultyLevel 1
+call HangmanDisplay.choosedifficultyLevel 1
 pop temp 0
 push constant 10
 call Random.randRange 1
@@ -862,7 +922,7 @@ pop local 3
 push constant 0
 pop this 5
 push pointer 0
-call HangmanGame.resetGuessedLetters 1
+call HangmanDisplay.resetGuessedLetters 1
 pop temp 0
 label WHILE_EXP1
 push local 3
@@ -878,22 +938,22 @@ label IF_TRUE0
 call Time.getTime 0
 pop temp 0
 push pointer 0
-call HangmanGame.drawGame 1
+call HangmanDisplay.drawGame 1
 pop temp 0
 call Keyboard.readChar 0
 pop local 1
 push pointer 0
 push local 1
-call HangmanGame.isValidGuess 2
+call HangmanDisplay.isValidGuess 2
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
 push pointer 0
 push local 1
-call HangmanGame.processGuess 2
+call HangmanDisplay.processGuess 2
 pop temp 0
 push pointer 0
-call HangmanGame.checkWordComplete 1
+call HangmanDisplay.checkWordComplete 1
 pop local 3
 label IF_FALSE1
 goto IF_END0
@@ -907,7 +967,7 @@ label WHILE_END1
 call Time.getTime 0
 pop temp 0
 push pointer 0
-call HangmanGame.checkWordComplete 1
+call HangmanDisplay.checkWordComplete 1
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
@@ -930,13 +990,13 @@ if-goto IF_TRUE4
 goto IF_FALSE4
 label IF_TRUE4
 push static 0
-push constant 2
+push constant 3
 add
 pop static 0
 goto IF_END4
 label IF_FALSE4
 push static 0
-push constant 3
+push constant 5
 add
 pop static 0
 label IF_END4
@@ -1287,7 +1347,7 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 0
 return
-function HangmanGame.DoublePlayer 3
+function HangmanDisplay.doublePlayer 3
 push argument 0
 pop pointer 0
 push constant 1
@@ -1331,7 +1391,7 @@ call String.appendChar 2
 call Output.printString 1
 pop temp 0
 push pointer 0
-call HangmanGame.choosedifficultyLevel 1
+call HangmanDisplay.choosedifficultyLevel 1
 pop temp 0
 push constant 10
 call Random.randRange 1
@@ -1351,7 +1411,7 @@ pop this 4
 call Screen.clearScreen 0
 pop temp 0
 push pointer 0
-call HangmanGame.playWord 1
+call HangmanDisplay.playWord 1
 pop local 2
 push local 2
 if-goto IF_TRUE0
@@ -1376,20 +1436,20 @@ if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
 push this 6
-push constant 2
+push constant 3
 add
 pop this 6
 goto IF_END2
 label IF_FALSE2
 push this 6
-push constant 3
+push constant 5
 add
 pop this 6
 label IF_END2
 label IF_END1
 label IF_FALSE0
 push pointer 0
-call HangmanGame.checkWordComplete 1
+call HangmanDisplay.checkWordComplete 1
 if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
@@ -1808,7 +1868,7 @@ call String.appendChar 2
 call Output.printString 1
 pop temp 0
 push pointer 0
-call HangmanGame.choosedifficultyLevel 1
+call HangmanDisplay.choosedifficultyLevel 1
 pop temp 0
 push constant 10
 call Random.randRange 1
@@ -1828,7 +1888,7 @@ pop this 4
 call Screen.clearScreen 0
 pop temp 0
 push pointer 0
-call HangmanGame.playWord 1
+call HangmanDisplay.playWord 1
 pop local 2
 push local 2
 if-goto IF_TRUE4
@@ -1853,20 +1913,20 @@ if-goto IF_TRUE6
 goto IF_FALSE6
 label IF_TRUE6
 push this 7
-push constant 2
+push constant 3
 add
 pop this 7
 goto IF_END6
 label IF_FALSE6
 push this 7
-push constant 3
+push constant 5
 add
 pop this 7
 label IF_END6
 label IF_END5
 label IF_FALSE4
 push pointer 0
-call HangmanGame.checkWordComplete 1
+call HangmanDisplay.checkWordComplete 1
 if-goto IF_TRUE7
 goto IF_FALSE7
 label IF_TRUE7
@@ -2568,7 +2628,7 @@ call Keyboard.readChar 0
 pop temp 0
 push constant 0
 return
-function HangmanGame.playWord 2
+function HangmanDisplay.playWord 2
 push argument 0
 pop pointer 0
 push constant 0
@@ -2576,7 +2636,7 @@ pop local 0
 push constant 0
 pop this 5
 push pointer 0
-call HangmanGame.resetGuessedLetters 1
+call HangmanDisplay.resetGuessedLetters 1
 pop temp 0
 label WHILE_EXP0
 push local 0
@@ -2588,35 +2648,35 @@ and
 not
 if-goto WHILE_END0
 push pointer 0
-call HangmanGame.drawGame 1
+call HangmanDisplay.drawGame 1
 pop temp 0
 call Keyboard.readChar 0
 pop local 1
 push pointer 0
 push local 1
-call HangmanGame.isValidGuess 2
+call HangmanDisplay.isValidGuess 2
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
 push pointer 0
 push local 1
-call HangmanGame.processGuess 2
+call HangmanDisplay.processGuess 2
 pop temp 0
 push pointer 0
-call HangmanGame.checkWordComplete 1
+call HangmanDisplay.checkWordComplete 1
 pop local 0
 label IF_FALSE0
 goto WHILE_EXP0
 label WHILE_END0
 push local 0
 return
-function HangmanGame.drawGame 1
+function HangmanDisplay.drawGame 1
 push argument 0
 pop pointer 0
 call Screen.clearScreen 0
 pop temp 0
 push pointer 0
-call HangmanGame.drawHangman 1
+call HangmanDisplay.drawHangman 1
 pop temp 0
 push constant 0
 pop local 0
@@ -2651,7 +2711,7 @@ push pointer 0
 push this 3
 push local 0
 call String.charAt 2
-call HangmanGame.isLetterGuessed 2
+call HangmanDisplay.isLetterGuessed 2
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
@@ -2796,8 +2856,16 @@ call String.appendChar 2
 call Output.printString 1
 pop temp 0
 push this 8
+push constant 0
+eq
+not
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push this 8
 call Output.printInt 1
 pop temp 0
+label IF_FALSE2
 push constant 8
 call String.new 1
 push constant 32
@@ -2821,21 +2889,33 @@ pop temp 0
 push this 8
 push constant 1
 eq
-if-goto IF_TRUE2
-goto IF_FALSE2
-label IF_TRUE2
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
 push this 6
 call Output.printInt 1
 pop temp 0
-goto IF_END2
-label IF_FALSE2
+goto IF_END3
+label IF_FALSE3
+push this 8
+push constant 2
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
 push this 7
 call Output.printInt 1
 pop temp 0
-label IF_END2
+goto IF_END4
+label IF_FALSE4
+push static 0
+call Output.printInt 1
+pop temp 0
+label IF_END4
+label IF_END3
 push constant 0
 return
-function HangmanGame.drawHangman 0
+function HangmanDisplay.drawHangman 0
 push argument 0
 pop pointer 0
 push this 5
@@ -2935,7 +3015,7 @@ pop temp 0
 label IF_FALSE5
 push constant 0
 return
-function HangmanGame.isValidGuess 0
+function HangmanDisplay.isValidGuess 0
 push argument 0
 pop pointer 0
 push argument 1
@@ -2954,7 +3034,7 @@ lt
 and
 or
 return
-function HangmanGame.processGuess 3
+function HangmanDisplay.processGuess 3
 push argument 0
 pop pointer 0
 push argument 1
@@ -3023,7 +3103,7 @@ pop this 5
 label IF_FALSE2
 push constant 0
 return
-function HangmanGame.checkWordComplete 1
+function HangmanDisplay.checkWordComplete 1
 push argument 0
 pop pointer 0
 push constant 0
@@ -3039,7 +3119,7 @@ push pointer 0
 push this 3
 push local 0
 call String.charAt 2
-call HangmanGame.isLetterGuessed 2
+call HangmanDisplay.isLetterGuessed 2
 not
 if-goto IF_TRUE0
 goto IF_FALSE0
@@ -3056,7 +3136,7 @@ label WHILE_END0
 push constant 0
 not
 return
-function HangmanGame.isLetterGuessed 0
+function HangmanDisplay.isLetterGuessed 0
 push argument 0
 pop pointer 0
 push argument 1
@@ -3069,7 +3149,7 @@ push that 0
 push constant 1
 eq
 return
-function HangmanGame.resetGuessedLetters 1
+function HangmanDisplay.resetGuessedLetters 1
 push argument 0
 pop pointer 0
 call Time.getTime 0
@@ -3098,7 +3178,7 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 0
 return
-function HangmanGame.dispose 0
+function HangmanDisplay.dispose 0
 push argument 0
 pop pointer 0
 push this 0
