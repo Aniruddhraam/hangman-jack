@@ -1,5 +1,5 @@
 function HangmanDisplay.new 0
-push constant 12
+push constant 13
 call Memory.alloc 1
 pop pointer 0
 push constant 10
@@ -989,6 +989,8 @@ pop temp 0
 push pointer 0
 call HangmanDisplay.choosedifficultyLevel 1
 pop temp 0
+call Screen.clearScreen 0
+pop temp 0
 push constant 10
 call Random.randRange 1
 pop local 0
@@ -1480,6 +1482,8 @@ pop temp 0
 push pointer 0
 call HangmanDisplay.choosedifficultyLevel 1
 pop temp 0
+call Screen.clearScreen 0
+pop temp 0
 push constant 10
 call Random.randRange 1
 pop local 0
@@ -1495,8 +1499,6 @@ add
 pop pointer 1
 push that 0
 pop this 4
-call Screen.clearScreen 0
-pop temp 0
 push pointer 0
 call HangmanDisplay.playWord 1
 pop local 2
@@ -1957,6 +1959,8 @@ pop temp 0
 push pointer 0
 call HangmanDisplay.choosedifficultyLevel 1
 pop temp 0
+call Screen.clearScreen 0
+pop temp 0
 push constant 10
 call Random.randRange 1
 pop local 0
@@ -1972,8 +1976,6 @@ add
 pop pointer 1
 push that 0
 pop this 4
-call Screen.clearScreen 0
-pop temp 0
 push pointer 0
 call HangmanDisplay.playWord 1
 pop local 2
@@ -3007,6 +3009,124 @@ call Output.printInt 1
 pop temp 0
 label IF_END4
 label IF_END3
+push constant 22
+push constant 0
+call Output.moveCursor 2
+pop temp 0
+push this 12
+not
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push constant 18
+call String.new 1
+push constant 80
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 63
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 102
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 104
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+goto IF_END5
+label IF_FALSE5
+push constant 31
+call String.new 1
+push constant 72
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 121
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 102
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 104
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 119
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+label IF_END5
 push constant 0
 return
 function HangmanDisplay.drawHangman 0
@@ -3127,25 +3247,349 @@ push constant 123
 lt
 and
 or
+push argument 1
+push constant 63
+eq
+or
 return
-function HangmanDisplay.processGuess 3
+function HangmanDisplay.processGuess 4
 push argument 0
 pop pointer 0
 push argument 1
-push constant 96
-gt
+push constant 63
+eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
+push this 12
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 44
+call String.new 1
+push constant 89
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 39
+call String.appendChar 2
+push constant 118
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 121
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 121
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 104
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 102
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 104
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 119
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 33
+call String.appendChar 2
+pop this 11
+push constant 0
+return
+label IF_FALSE1
+push constant 22
+push constant 0
+call Output.moveCursor 2
+pop temp 0
+push constant 18
+call String.new 1
+push constant 69
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 112
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 40
+call String.appendChar 2
+push constant 49
+call String.appendChar 2
+push constant 45
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push this 3
+call String.length 1
+call Output.printInt 1
+pop temp 0
+push constant 3
+call String.new 1
+push constant 41
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push constant 0
+call String.new 1
+call Keyboard.readInt 1
+pop local 3
+push local 3
+push constant 1
+lt
+push local 3
+push this 3
+call String.length 1
+gt
+or
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push constant 28
+call String.new 1
+push constant 73
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 118
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 112
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 33
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 84
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 121
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 103
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 46
+call String.appendChar 2
+pop this 11
+push constant 0
+return
+label IF_FALSE2
+push local 3
+push constant 1
+sub
+pop local 3
+push this 3
+push local 3
+call String.charAt 2
+pop local 0
+push local 0
+push constant 65
+sub
+push this 2
+add
+push constant 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 0
+not
+pop this 12
+push constant 27
+call String.new 1
+push constant 72
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 33
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 76
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 118
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 46
+call String.appendChar 2
+pop this 11
+push constant 0
+return
+label IF_FALSE0
+push argument 1
+push constant 96
+gt
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
 push argument 1
 push constant 32
 sub
 pop local 0
-goto IF_END0
-label IF_FALSE0
+goto IF_END3
+label IF_FALSE3
 push argument 1
 pop local 0
-label IF_END0
+label IF_END3
 push local 0
 push constant 65
 sub
@@ -3155,9 +3599,9 @@ pop pointer 1
 push that 0
 push constant 1
 eq
-if-goto IF_TRUE1
-goto IF_FALSE1
-label IF_TRUE1
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
 push constant 45
 call String.new 1
 push constant 89
@@ -3253,7 +3697,7 @@ call String.appendChar 2
 pop this 11
 push constant 0
 return
-label IF_FALSE1
+label IF_FALSE4
 push local 0
 push constant 65
 sub
@@ -3280,13 +3724,13 @@ push local 1
 call String.charAt 2
 push local 0
 eq
-if-goto IF_TRUE2
-goto IF_FALSE2
-label IF_TRUE2
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
 push constant 0
 not
 pop local 2
-label IF_FALSE2
+label IF_FALSE5
 push local 1
 push constant 1
 add
@@ -3294,18 +3738,18 @@ pop local 1
 goto WHILE_EXP0
 label WHILE_END0
 push local 2
-if-goto IF_TRUE3
-goto IF_FALSE3
-label IF_TRUE3
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
 push constant 5
 call Random.randRange 1
 pop local 1
 push local 1
 push constant 0
 eq
-if-goto IF_TRUE4
-goto IF_FALSE4
-label IF_TRUE4
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
 push constant 10
 call String.new 1
 push constant 71
@@ -3329,13 +3773,13 @@ call String.appendChar 2
 push constant 33
 call String.appendChar 2
 pop this 11
-label IF_FALSE4
+label IF_FALSE7
 push local 1
 push constant 1
 eq
-if-goto IF_TRUE5
-goto IF_FALSE5
-label IF_TRUE5
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
 push constant 11
 call String.new 1
 push constant 78
@@ -3361,13 +3805,13 @@ call String.appendChar 2
 push constant 33
 call String.appendChar 2
 pop this 11
-label IF_FALSE5
+label IF_FALSE8
 push local 1
 push constant 2
 eq
-if-goto IF_TRUE6
-goto IF_FALSE6
-label IF_TRUE6
+if-goto IF_TRUE9
+goto IF_FALSE9
+label IF_TRUE9
 push constant 8
 call String.new 1
 push constant 65
@@ -3387,13 +3831,13 @@ call String.appendChar 2
 push constant 33
 call String.appendChar 2
 pop this 11
-label IF_FALSE6
+label IF_FALSE9
 push local 1
 push constant 3
 eq
-if-goto IF_TRUE7
-goto IF_FALSE7
-label IF_TRUE7
+if-goto IF_TRUE10
+goto IF_FALSE10
+label IF_TRUE10
 push constant 11
 call String.new 1
 push constant 89
@@ -3419,13 +3863,13 @@ call String.appendChar 2
 push constant 33
 call String.appendChar 2
 pop this 11
-label IF_FALSE7
+label IF_FALSE10
 push local 1
 push constant 4
 eq
-if-goto IF_TRUE8
-goto IF_FALSE8
-label IF_TRUE8
+if-goto IF_TRUE11
+goto IF_FALSE11
+label IF_TRUE11
 push constant 10
 call String.new 1
 push constant 69
@@ -3449,8 +3893,8 @@ call String.appendChar 2
 push constant 33
 call String.appendChar 2
 pop this 11
-goto IF_END8
-label IF_FALSE8
+goto IF_END11
+label IF_FALSE11
 push constant 14
 call String.new 1
 push constant 71
@@ -3482,9 +3926,9 @@ call String.appendChar 2
 push constant 33
 call String.appendChar 2
 pop this 11
-label IF_END8
-goto IF_END3
-label IF_FALSE3
+label IF_END11
+goto IF_END6
+label IF_FALSE6
 push this 5
 push constant 1
 add
@@ -3495,9 +3939,9 @@ pop local 1
 push local 1
 push constant 0
 eq
-if-goto IF_TRUE9
-goto IF_FALSE9
-label IF_TRUE9
+if-goto IF_TRUE12
+goto IF_FALSE12
+label IF_TRUE12
 push constant 17
 call String.new 1
 push constant 85
@@ -3535,13 +3979,13 @@ call String.appendChar 2
 push constant 46
 call String.appendChar 2
 pop this 11
-label IF_FALSE9
+label IF_FALSE12
 push local 1
 push constant 1
 eq
-if-goto IF_TRUE10
-goto IF_FALSE10
-label IF_TRUE10
+if-goto IF_TRUE13
+goto IF_FALSE13
+label IF_TRUE13
 push constant 16
 call String.new 1
 push constant 78
@@ -3577,13 +4021,13 @@ call String.appendChar 2
 push constant 46
 call String.appendChar 2
 pop this 11
-label IF_FALSE10
+label IF_FALSE13
 push local 1
 push constant 2
 eq
-if-goto IF_TRUE11
-goto IF_FALSE11
-label IF_TRUE11
+if-goto IF_TRUE14
+goto IF_FALSE14
+label IF_TRUE14
 push constant 36
 call String.new 1
 push constant 79
@@ -3659,13 +4103,13 @@ call String.appendChar 2
 push constant 46
 call String.appendChar 2
 pop this 11
-label IF_FALSE11
+label IF_FALSE14
 push local 1
 push constant 3
 eq
-if-goto IF_TRUE12
-goto IF_FALSE12
-label IF_TRUE12
+if-goto IF_TRUE15
+goto IF_FALSE15
+label IF_TRUE15
 push constant 12
 call String.new 1
 push constant 75
@@ -3693,13 +4137,13 @@ call String.appendChar 2
 push constant 33
 call String.appendChar 2
 pop this 11
-label IF_FALSE12
+label IF_FALSE15
 push local 1
 push constant 4
 eq
-if-goto IF_TRUE13
-goto IF_FALSE13
-label IF_TRUE13
+if-goto IF_TRUE16
+goto IF_FALSE16
+label IF_TRUE16
 push constant 14
 call String.new 1
 push constant 68
@@ -3731,8 +4175,8 @@ call String.appendChar 2
 push constant 33
 call String.appendChar 2
 pop this 11
-goto IF_END13
-label IF_FALSE13
+goto IF_END16
+label IF_FALSE16
 push constant 18
 call String.new 1
 push constant 72
@@ -3772,8 +4216,8 @@ call String.appendChar 2
 push constant 46
 call String.appendChar 2
 pop this 11
-label IF_END13
-label IF_END3
+label IF_END16
+label IF_END6
 push constant 0
 return
 function HangmanDisplay.checkWordComplete 1
@@ -3849,6 +4293,8 @@ add
 pop local 0
 goto WHILE_EXP0
 label WHILE_END0
+push constant 0
+pop this 12
 push constant 26
 call String.new 1
 push constant 78
