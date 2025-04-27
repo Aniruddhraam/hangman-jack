@@ -33,31 +33,26 @@ class HangmanDisplay {
         var int key2;
         var int index;
 
-	do difficulty();
+        do difficulty();
 
-       	let key1 = Keyboard.readChar();
+        let key1 = Keyboard.readChar();
 
-	do category();
+        do category();
 
-       	let key2 = Keyboard.readChar();
+        let key2 = Keyboard.readChar();
 
-	if (((key1 = 69) | (key1 = 77) | (key1 = 72)) & ((key2 = 49) | (key2 = 50) | (key2 = 51))) {
-
-		do checkAndAssign(key1,key2);
-	}
-
+        if (((key1 = 69) | (key1 = 77) | (key1 = 72)) & ((key2 = 49) | (key2 = 50) | (key2 = 51))) {
+            do checkAndAssign(key1,key2);
+        }
         else {
+            do choosedifficultyLevel();
+        }
 
-		do choosedifficultyLevel();
-
-	}
-
-	return;
+        return;
     }
 
     method void difficulty() {
-
-	do Screen.clearScreen();
+        do Screen.clearScreen();
         do Output.moveCursor(9, 22);
         do Output.printString("Choose Difficulty Level:");
         do Output.moveCursor(11, 24);
@@ -68,99 +63,93 @@ class HangmanDisplay {
         do Output.printString("Press H for Hard");
         do Output.println();
 
-	return;
-
+        return;
     }
 
     method void category() {
-
-	do Screen.clearScreen();  // Clear the screen before showing next menu
+        do Screen.clearScreen();  // Clear the screen before showing next menu
         do Output.moveCursor(9, 22);
         do Output.printString("Choose the Field:");
         do Output.moveCursor(11, 24);
-       	do Output.printString("Press 1 for Geography");
+        do Output.printString("Press 1 for Geography");
         do Output.moveCursor(12, 24);
         do Output.printString("Press 2 for General Knowledge");
         do Output.moveCursor(13, 24);
         do Output.printString("Press 3 for Technology");
         do Output.println();
 
-	return;
-
+        return;
     }
 
     method void checkAndAssign(int key1, int key2) {
+        // Easy difficulty (E key)
+        if (key1 = 69) { // Easy difficulty (E key)
+            let currentDifficulty = 1;
+            
+            // Geography (1 key)
+            if (key2 = 49) {
+                let clues = questionSet.easyGeoClues();
+                let words = questionSet.easyGeo();
+            }
+            // General Knowledge (2 key)
+            if (key2 = 50) {
+                let clues = questionSet.easyGKClues();
+                let words = questionSet.easyGK();
+            }
+            // Technology (3 key)
+            if (key2 = 51) {
+                let clues = questionSet.easyTechClues();
+                let words = questionSet.easyTech();
+            }
+        }
+        
+        // Medium difficulty (M key)
+        if (key1 = 77) {
+            let currentDifficulty = 2;
+            
+            // Geography (1 key)
+            if (key2 = 49) {
+                let clues = questionSet.mediumGeoClues();
+                let words = questionSet.mediumGeo();
+            }
+            // General Knowledge (2 key)
+            if (key2 = 50) {
+                let clues = questionSet.mediumGKClues();
+                let words = questionSet.mediumGK();
+            }
+            // Technology (3 key)
+            if (key2 = 51) {
+                let clues = questionSet.mediumTechClues();
+                let words = questionSet.mediumTech();
+            }
+        }
+        
+        // Hard difficulty (H key)
+        if (key1 = 72) {
+            let currentDifficulty = 3;
+            
+            // Geography (1 key)
+            if (key2 = 49) {
+                let clues = questionSet.hardGeoClues();
+                let words = questionSet.hardGeo();
+            }
+            // General Knowledge (2 key)
+            if (key2 = 50) {
+                let clues = questionSet.hardGKClues();
+                let words = questionSet.hardGK();
+            }
+            // Technology (3 key)
+            if (key2 = 51) {
+                let clues = questionSet.hardTechClues();
+                let words = questionSet.hardTech();
+            }
+        } 
 
-	// Easy difficulty (E key)
-	if (key1 = 69) { // Easy difficulty (E key)
-	    let currentDifficulty = 1;
-	    
-	    // Geography (1 key)
-	    if (key2 = 49) {
-	        let clues = questionSet.easyGeoClues();
-        	let words = questionSet.easyGeo();
-	    }
-	    // General Knowledge (2 key)
-	    if (key2 = 50) {
-	        let clues = questionSet.easyGKClues();
-	        let words = questionSet.easyGK();
-	    }
-	    // Technology (3 key)
-	    if (key2 = 51) {
-	        let clues = questionSet.easyTechClues();
-	        let words = questionSet.easyTech();
-	    }
-	}
-	
-	// Medium difficulty (M key)
-	if (key1 = 77) {
-	    let currentDifficulty = 2;
-	    
-	    // Geography (1 key)
-	    if (key2 = 49) {
-	        let clues = questionSet.mediumGeoClues();
-	        let words = questionSet.mediumGeo();
-	    }
-	    // General Knowledge (2 key)
-	    if (key2 = 50) {
-	        let clues = questionSet.mediumGKClues();
-	        let words = questionSet.mediumGK();
-	    }
-	    // Technology (3 key)
-	    if (key2 = 51) {
-	        let clues = questionSet.mediumTechClues();
-        	let words = questionSet.mediumTech();
-	    }
-	}
-	
-	// Hard difficulty (H key)
-	if (key1 = 72) {
-	    let currentDifficulty = 3;
-	    
-	    // Geography (1 key)
-	    if (key2 = 49) {
-	        let clues = questionSet.hardGeoClues();
-	        let words = questionSet.hardGeo();
-	    }
-	    // General Knowledge (2 key)
-	    if (key2 = 50) {
-	        let clues = questionSet.hardGKClues();
-	        let words = questionSet.hardGK();
-	    }
-	    // Technology (3 key)
-	    if (key2 = 51) {
-	        let clues = questionSet.hardTechClues();
-	        let words = questionSet.hardTech();
-	    }
-	} 
-
-    return;
-
+        return;
     }
 
     method void run() {
-
-	var char key;
+        var char key;
 
         do Screen.clearScreen();
 
@@ -170,39 +159,32 @@ class HangmanDisplay {
         do Output.printString("Press 1 for Single Player Mode");
         do Output.moveCursor(11,6);
         do Output.printString("Press 2 for Two Player Mode(5 guesses for each player)");
-	do Output.println();
-	
-	let key = Keyboard.readChar();
+	do Output.moveCursor(13,1);
+	do Output.printString("NOTE: If hint not used, Score: +1(Easy), +3(Medium), +5(Hard).");
+	do Output.moveCursor(14,7);
+	do Output.printString("If hint used, Score: +0(Easy), +1(Medium), +3(Hard).");
+        do Output.println();
+        
+        let key = Keyboard.readChar();
 
-	if (key = 49) {
+        if (key = 49) {
+            do singlePlayer();
+        }
+        else {
+            if (key = 50) {
+                do doublePlayer();
+            }
+            
+            else {
+                do Sys.halt();
+            }
+        }
 
-		do singlePlayer();
-
-	}
-
-	else {
-
-		if (key = 50) {
-
-			do doublePlayer();
-
-		}
-		
-		else {
-
-			do Sys.halt();
-
-		}
-
-	}
-
-
-	return;
-
+        return;
     }
 
     method void singlePlayer() {
-	    var int index;
+        var int index;
         var char key;
         var boolean gameOver;
         var boolean wordCompleted;
@@ -238,19 +220,36 @@ class HangmanDisplay {
                 }
             }
             do Time.getTime();
-            if (checkWordComplete()) {
-        		if (currentDifficulty = 1) {
-			        let score = score + 1;
-                	}
+            
+            if (checkWordComplete() & ~(hintUsed)) {
+                if (currentDifficulty = 1) {
+                    let score = score + 1;
+                }
                 else {
                     if (currentDifficulty = 2) {
-				        let score = score + 3;
-                        }
-                else {
-                    let score = score + 5;
+                        let score = score + 3;
                     }
+                    else {
+                        let score = score + 5;
+                    }
+                }
             }
 
+            if (checkWordComplete() & (hintUsed)) {
+                if (currentDifficulty = 1) {
+                    let score = score + 0;
+                }
+                else {
+                    if (currentDifficulty = 2) {
+                        let score = score + 1;
+                    }
+                    else {
+                        let score = score + 3;
+                    }
+                }
+            }
+
+            if (checkWordComplete()) {
                 do Screen.clearScreen();
                 do Output.moveCursor(10, 25);
                 do Output.printString("Good Job!");
@@ -261,9 +260,8 @@ class HangmanDisplay {
                 do Output.println();
                 do Output.moveCursor(12, 22);
                 do Output.printString("Play again? (Y/N)");
-
-            } else {
-
+            } 
+            else {
                 do Screen.clearScreen();
                 do Output.moveCursor(10, 15);
                 do Output.printString("Better Luck Next Time!");
@@ -314,34 +312,35 @@ class HangmanDisplay {
             let currentClue = clues[index];
             let success = playWord();
             
-            if (success) {
+            if (success & ~(hintUsed)) {
+                if (currentDifficulty = 1) {
+                    let player1Score = player1Score + 1;
+                }
+                else {
+                    if (currentDifficulty = 2) {
+                        let player1Score = player1Score + 3;
+                    }
+                    else {
+                        let player1Score = player1Score + 5;
+                    }
+                }
+            }
 
-		if (currentDifficulty = 1) {
-
-			let player1Score = player1Score + 1;
-
-		}
-
-		else {
-
-			if (currentDifficulty = 2) {
-
-				let player1Score = player1Score + 3;
-
-			}
-
-			else {
-
-				let player1Score = player1Score + 5;
-
-			}
-
-		}
-
+            if (success & (hintUsed)) {
+                if (currentDifficulty = 1) {
+                    let player1Score = player1Score + 0;
+                }
+                else {
+                    if (currentDifficulty = 2) {
+                        let player1Score = player1Score + 1;
+                    }
+                    else {
+                        let player1Score = player1Score + 3;
+                    }
+                }
             }
 
             if (checkWordComplete()) {
-
                 do Screen.clearScreen();
                 do Output.moveCursor(10, 25);
                 do Output.printString("Good Job!");
@@ -351,9 +350,9 @@ class HangmanDisplay {
                 do Output.printInt(player1Score);
                 do Output.println();
                 do Output.moveCursor(12, 15);
-		do Output.printString("Press any key to continue: ");
-
-            } else {
+                do Output.printString("Press any key to continue: ");
+            } 
+            else {
                 do Screen.clearScreen();
                 do Output.moveCursor(10, 15);
                 do Output.printString("Better Luck Next Time!");
@@ -367,13 +366,11 @@ class HangmanDisplay {
                 do Output.printInt(player1Score);
                 do Output.println();
                 do Output.moveCursor(12, 15);
-		do Output.printString("Press any key to continue: ");
-
+                do Output.printString("Press any key to continue: ");
             }
 
             do Keyboard.readChar();
             let i = i + 1;
-
         }
         
         let currentPlayer = 2;
@@ -394,34 +391,35 @@ class HangmanDisplay {
             let currentClue = clues[index];
             let success = playWord();
             
-            if (success) {
+            if (success & ~(hintUsed)) {
+                if (currentDifficulty = 1) {
+                    let player2Score = player2Score + 1;
+                }
+                else {
+                    if (currentDifficulty = 2) {
+                        let player2Score = player2Score + 3;
+                    }
+                    else {
+                        let player2Score = player2Score + 5;
+                    }
+                }
+            }
 
-		if (currentDifficulty = 1) {
-
-			let player2Score = player2Score + 1;
-
-		}
-
-		else {
-
-			if (currentDifficulty = 2) {
-
-				let player2Score = player2Score + 3;
-
-			}
-
-			else {
-
-				let player2Score = player2Score + 5;
-
-			}
-
-		}
-
+            if (success & (hintUsed)) {
+                if (currentDifficulty = 1) {
+                    let player2Score = player2Score + 0;
+                }
+                else {
+                    if (currentDifficulty = 2) {
+                        let player2Score = player2Score + 1;
+                    }
+                    else {
+                        let player2Score = player2Score + 3;
+                    }
+                }
             }
             
             if (checkWordComplete()) {
-
                 do Screen.clearScreen();
                 do Output.moveCursor(10, 25);
                 do Output.printString("Good Job!");
@@ -431,9 +429,9 @@ class HangmanDisplay {
                 do Output.printInt(player2Score);
                 do Output.println();
                 do Output.moveCursor(12, 15);
-		do Output.printString("Press any key to continue: ");
-
-            } else {
+                do Output.printString("Press any key to continue: ");
+            } 
+            else {
                 do Screen.clearScreen();
                 do Output.moveCursor(10, 15);
                 do Output.printString("Better Luck Next Time!");
@@ -447,13 +445,11 @@ class HangmanDisplay {
                 do Output.printInt(player2Score);
                 do Output.println();
                 do Output.moveCursor(12, 15);
-		do Output.printString("Press any key to continue: ");
-
+                do Output.printString("Press any key to continue: ");
             }
 
             do Keyboard.readChar();
             let i = i + 1;
-
         }
         
         do Screen.clearScreen();
@@ -469,24 +465,23 @@ class HangmanDisplay {
         do Output.printString("Winner is: ");
         do Output.println();
 
-	if (player1Score > player2Score) {
-		do Output.printString("Player 1!");
-	}
-	else {
-		if (player1Score < player2Score) {
-			do Output.printString("Player 2!");
-		}
-		else {
-			do Output.printString("Both the Players!");
-		}
-	}
+        if (player1Score > player2Score) {
+            do Output.printString("Player 1!");
+        }
+        else {
+            if (player1Score < player2Score) {
+                do Output.printString("Player 2!");
+            }
+            else {
+                do Output.printString("Both the Players!");
+            }
+        }
 
         do Output.println();
         do Output.printString("Press any key to exit...");
         do Keyboard.readChar();
         
         return;
-
     }
 
     method boolean playWord() {
@@ -508,7 +503,7 @@ class HangmanDisplay {
         }
         
         return wordCompleted;
-        }
+    }
 
     method void drawGame() {
         var int i;
@@ -558,11 +553,11 @@ class HangmanDisplay {
         if (currentPlayer = 1) {
             do Output.printInt(player1Score);
         } else {
-            if (currentPlayer = 2) {		
+            if (currentPlayer = 2) {        
                 do Output.printInt(player2Score);
             } else {
                 do Output.printInt(score);
-            }		
+            }        
         }
         
         // Add hint instruction
