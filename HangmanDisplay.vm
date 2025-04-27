@@ -25,12 +25,12 @@ function HangmanDisplay.choosedifficultyLevel 3
 push argument 0
 pop pointer 0
 push pointer 0
-call HangmanDisplay.Difficulty 1
+call HangmanDisplay.difficulty 1
 pop temp 0
 call Keyboard.readChar 0
 pop local 0
 push pointer 0
-call HangmanDisplay.Category 1
+call HangmanDisplay.category 1
 pop temp 0
 call Keyboard.readChar 0
 pop local 1
@@ -73,7 +73,7 @@ pop temp 0
 label IF_END0
 push constant 0
 return
-function HangmanDisplay.Difficulty 0
+function HangmanDisplay.difficulty 0
 push argument 0
 pop pointer 0
 call Screen.clearScreen 0
@@ -262,7 +262,7 @@ call Output.println 0
 pop temp 0
 push constant 0
 return
-function HangmanDisplay.Category 0
+function HangmanDisplay.category 0
 push argument 0
 pop pointer 0
 call Screen.clearScreen 0

@@ -30,11 +30,11 @@ class HangmanDisplay {
         var int key2;
         var int index;
 
-	do Difficulty();
+	do difficulty();
 
        	let key1 = Keyboard.readChar();
 
-	do Category();
+	do category();
 
        	let key2 = Keyboard.readChar();
 
@@ -52,7 +52,7 @@ class HangmanDisplay {
 	return;
     }
 
-    method void Difficulty() {
+    method void difficulty() {
 
 	do Screen.clearScreen();
         do Output.moveCursor(9, 22);
@@ -69,7 +69,7 @@ class HangmanDisplay {
 
     }
 
-    method void Category() {
+    method void category() {
 
 	do Screen.clearScreen();  // Clear the screen before showing next menu
         do Output.moveCursor(9, 22);
