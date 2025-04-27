@@ -13,6 +13,7 @@ class HangmanDisplay {
     field int currentPlayer;
     field Questions questionSet;
     field int currentDifficulty;
+    field String feedbackMessage;
 
     constructor HangmanDisplay new() {
         let words = Array.new(10);
@@ -22,6 +23,7 @@ class HangmanDisplay {
         let questionSet = Questions.new();
         let player1Score = 0;
         let player2Score = 0;
+        let feedbackMessage = "Welcome to Hangman! Make your first guess.";
         return this;
     }
 
@@ -527,6 +529,10 @@ class HangmanDisplay {
         var int i;
         
         do Screen.clearScreen();
+        
+        do Output.moveCursor(2, 0);
+        do Output.printString(feedbackMessage);
+        
         do drawHangman();
         
         // Draw word
@@ -537,9 +543,9 @@ class HangmanDisplay {
             if (isLetterGuessed(currentWord.charAt(i))) {
                 do Output.printChar(currentWord.charAt(i));
             } else {
-                do Output.printChar(95); // underscore
+                do Output.printChar(95);
             }
-            do Output.printChar(32); // space
+            do Output.printChar(32);
             let i = i + 1;
         }
         
@@ -560,22 +566,18 @@ class HangmanDisplay {
         
         do Output.moveCursor(21, 0);
         do Output.printString("Player ");
-	if (~(currentPlayer=0)) {
-        	do Output.printInt(currentPlayer);
-	}
+        if (~(currentPlayer=0)) {
+            do Output.printInt(currentPlayer);
+        }
         do Output.printString(" Score: ");
         if (currentPlayer = 1) {
             do Output.printInt(player1Score);
         } else {
-
-		if (currentPlayer = 2) {		
-            		do Output.printInt(player2Score);
-		}
-
-		else {
-			do Output.printInt(score);
-		}		
-
+            if (currentPlayer = 2) {		
+                do Output.printInt(player2Score);
+            } else {
+                do Output.printInt(score);
+            }		
         }
         
         return;
@@ -627,6 +629,11 @@ class HangmanDisplay {
             let upperKey = key;
         }
         
+        if (guessedLetters[upperKey - 65] = 1) {
+            let feedbackMessage = "You already guessed that letter! Try another.";
+            return;
+        }
+        
         let guessedLetters[upperKey - 65] = 1;
         
         let found = false;
@@ -638,8 +645,28 @@ class HangmanDisplay {
             let i = i + 1;
         }
         
-        if (~found) {
+        if (found) {
+            // Correct guess messages
+            let i = Random.randRange(5);  // Select a random message
+            
+            if (i = 0) { let feedbackMessage = "Great job!"; }
+            if (i = 1) { let feedbackMessage = "Nice guess!"; }
+            if (i = 2) { let feedbackMessage = "Amazing!"; }
+            if (i = 3) { let feedbackMessage = "You got it!"; }
+            if (i = 4) { let feedbackMessage = "Excellent!"; }
+            else { let feedbackMessage = "Good thinking!"; }
+        } else {
+            // Wrong guess messages
             let mistakes = mistakes + 1;
+            
+            let i = Random.randRange(5);  // Select a random message
+            
+            if (i = 0) { let feedbackMessage = "Uh oh! Try again."; }
+            if (i = 1) { let feedbackMessage = "Not quite right."; }
+            if (i = 2) { let feedbackMessage = "Oops! That letter isn't in the word."; }
+            if (i = 3) { let feedbackMessage = "Keep trying!"; }
+            if (i = 4) { let feedbackMessage = "Don't give up!"; }
+            else { let feedbackMessage = "Hmm, not that one."; }
         }
         return;
     }
@@ -661,7 +688,6 @@ class HangmanDisplay {
     }
 
     method void resetGuessedLetters() {
-
         var int i;
 
         do Time.getTime();
@@ -671,6 +697,8 @@ class HangmanDisplay {
             let guessedLetters[i] = 0;
             let i = i + 1;
         }
+        
+        let feedbackMessage = "New word! Make your guess.";
         return;
     }
 
