@@ -1,4 +1,4 @@
-# Hangman Terminal Game
+# Hangman Jack Game
 
 A console-based Hangman implementation with multiple difficulty levels, categories, single- and two-player modes, hint support, and a dynamic scoring system.
 
@@ -50,15 +50,7 @@ A console-based Hangman implementation with multiple difficulty levels, categori
 
 ## Prerequisites
 
-- Java Development Kit (JDK) 8 or higher  
-- Custom helper classes (make sure these are on your classpath):  
-  - `Keyboard`  
-  - `Screen`  
-  - `Output`  
-  - `Random`  
-  - `Time`  
-  - `Questions`  
-
+- Nand2Tetris JackCompiler and VMEmulator
 ---
 
 ## Installation
@@ -76,7 +68,7 @@ javac src/*.java
 ### Starting the Game
 
 ```bash
-java -cp src HangmanDisplay
+JackCompiler hangman-jack
 ```
 
 ### Controls & Input
